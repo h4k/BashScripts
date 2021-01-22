@@ -9,9 +9,13 @@ curl -s https://api.github.com/repos/syncthing/syncthing/releases/latest | grep 
 tar xf syncthing-linux-amd64*.tar.gz
 echo "Unziped"
 
+sudo systemctl stop syncthing@$USER
+
 sudo cp syncthing-linux-amd64-*/syncthing  /usr/local/bin/
 
 rm -R syncthing*
 echo "Cleaned"
+
+sudo systemctl start syncthing@$USER
 
 syncthing --version
